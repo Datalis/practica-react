@@ -2,7 +2,7 @@ import React from "react";
 
 function ExpenseItem({eType, totalVal, providerRuc}) {
     return (
-        <li>
+        <li className="ExpenseItem">
             <div>
                 <p>Tipo de Gasto: {eType}</p>
                 <p>Valor: {totalVal}</p>
