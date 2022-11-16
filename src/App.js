@@ -4,27 +4,32 @@ import React from 'react';
 import ExpenseItem from './components/ExpenseItem';
 import ExpenseCounter from './components/ExpenseCounter';
 import ExpenseSearch from './components/ExpenseSearch';
+import ExpenseForm from './components/ExpenseForm';
 
 const expenseList = [
   {
+    numDoc: '99393',
     eType: 'Alimentacion',
     totalVal: 10,
     providerRuc: '0917295057001'
 
   },
   {
+    numDoc: '344423',
     eType: 'Hospedaje',
     totalVal: 100,
     providerRuc: '1237729393001'
 
   },
   {
+    numDoc: '48838',
     eType: 'Hospedaje',
     totalVal: 100,
     providerRuc: '1237729393001'
 
   },
   {
+    numDoc: '12345',
     eType: 'Hospedaje',
     totalVal: 100,
     providerRuc: '1237729393001'
@@ -43,7 +48,11 @@ class App extends React.Component {
     this.setSearchVal = this.setSearchVal.bind(this);
   }
 
-  setSearchVal (v) {
+  componentDidMount() {
+    localStorage.getItem('EXPENSES')
+  }
+
+  setSearchVal(v) {
     this.setState({ searchValue: v });
   }
 
@@ -56,24 +65,23 @@ class App extends React.Component {
 
 
     return (
-      <div>
-        {/* <header className="App-header">
-          <p>Nombre: {user.name}</p>
-          <p>Apellido: {user.last_name}</p>
-          <p>Es mayor de edad {user.age > 18 ? 'Si': 'No'}</p>
-        </header> */}
+      <div className='flex-box-container'>
+        <header className="App-header">
+          <ExpenseSearch
+            searchValue={this.state.searchValue}
+            onSearchValueChange={this.setSearchVal}
+          ></ExpenseSearch>
 
-        <ExpenseSearch
-          searchValue={this.state.searchValue}
-          onSearchValueChange={this.setSearchVal}
-        ></ExpenseSearch>
+          <ExpenseCounter count={expenseCount} />
+        </header>
 
-        <ExpenseCounter count={expenseCount} />
-          <ul className='expenseList'>
-            {searchExpenses.map(e =>
-              <ExpenseItem {...e} />
-            )}
-          </ul>
+        <ul>
+          {searchExpenses.map(e =>
+            <ExpenseItem key={e.numDoc} {...e} />
+          )}
+        </ul>
+
+        <ExpenseForm ></ExpenseForm>
       </div>
     );
   }

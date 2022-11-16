@@ -1,0 +1,7 @@
+.searchInput {
+    background-color: #FAFAFA;
+    margin-top: 60px;
+    width: 300px;
+    height: 30px;
+    box-shadow: 0px 5px 50px rgba(5, 20, 51, 0.15);
+}

@@ -1,6 +1,7 @@
+import React from "react";
+import "./ExpenseSearch.css"
+
 function ExpenseSearch(props) {
-
-
     return (
         <input 
             className="searchInput" 
