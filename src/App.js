@@ -22,8 +22,8 @@ function App (props) {
   const expenseCount = searchExpenses.length;
 
   const handleFormSubmit = formData => {
-    // props.addExpense({'gola': 'jajja'})
-    setExpenses([...expenses, {...formData}])
+    props.addExpense({'gola': 'jajja33'})
+    // setExpenses([...expenses, {...formData}])
   }
 
 
