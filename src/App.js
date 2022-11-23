@@ -1,4 +1,3 @@
-
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import ExpenseItem from './components/ExpenseItem';
@@ -6,16 +5,16 @@ import ExpenseCounter from './components/ExpenseCounter';
 import ExpenseSearch from './components/ExpenseSearch';
 import ExpenseForm from './components/ExpenseForm';
 import expenseList from './mock'
+import { addExpense } from './redux/actions/expenseActions';
+import { connect } from 'react-redux'
 
 
 function App (props) {
 
+  console.log(props.expenses)
+
   const [expenses, setExpenses] = useState(expenseList);
   const [searchVal, setSearchVal] = useState('');
-
-  useEffect(( ) => {
-    // traer datos de la api
-  }, [])
 
   const searchExpenses = expenses.filter(e =>
     e.eType.toLocaleLowerCase().includes(searchVal.toLocaleLowerCase())
@@ -23,6 +22,7 @@ function App (props) {
   const expenseCount = searchExpenses.length;
 
   const handleFormSubmit = formData => {
+    // props.addExpense({'gola': 'jajja'})
     setExpenses([...expenses, {...formData}])
   }
 
@@ -49,4 +49,14 @@ function App (props) {
     );
 }
 
-export default App;
+const mapState2Props = state => {
+  return {
+    expenses: state.expenseReducer.expenses
+  }
+}
+
+const mapDispatch2Props = {
+    addExpense
+}
+
+export default   connect(mapState2Props, mapDispatch2Props) (App) ;

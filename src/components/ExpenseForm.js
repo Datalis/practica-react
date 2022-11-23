@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react"
 import '../App.css'
 import './ExpenseForm.css'
+import axios from 'axios';
 
 function ExpenseForm(props) {
-    const [form, setForm] = useState({numDoc: '', eType: "Hospedaje", totalVal: '', providerRuc: ''})
+    const [form, setForm] = useState({ numDoc: '', eType: "Hospedaje", totalVal: '', providerRuc: '' })
 
     useEffect(() => {
-
+        console.log('Ejecutando efecto')
+        axios.get('https://637e43b69c2635df8f9e3cf3.mockapi.io/api/conceptos').then(res => {
+            console.log(res.data);
+        })
     }, [])
 
     const handleSubmit = (e) => {
@@ -17,9 +21,9 @@ function ExpenseForm(props) {
     }
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         console.log(name, typeof value);
-        setForm(oldForm => ({...oldForm, [name]: value}))
+        setForm(oldForm => ({ ...oldForm, [name]: value }))
     }
 
     return (
