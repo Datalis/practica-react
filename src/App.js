@@ -18,7 +18,7 @@ function App (props) {
   }, [])
 
   const searchExpenses = expenses.filter(e =>
-    e.eType.toLocaleLowerCase().includes(this.state.searchValue.toLocaleLowerCase())
+    e.eType.toLocaleLowerCase().includes(searchVal.toLocaleLowerCase())
   );
   const expenseCount = searchExpenses.length;
 
