@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import ExpenseItem from './components/ExpenseItem';
 import ExpenseCounter from './components/ExpenseCounter';
 import ExpenseSearch from './components/ExpenseSearch';
@@ -7,6 +7,11 @@ import ExpenseForm from './components/ExpenseForm';
 import expenseList from './mock'
 import { addExpense } from './redux/actions/expenseActions';
 import { connect } from 'react-redux'
+
+const context  = createContext();
+// context.Provider value
+// context.Consumer
+// useContext
 
 
 function App (props) {
