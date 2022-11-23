@@ -1,6 +1,6 @@
 
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ExpenseItem from './components/ExpenseItem';
 import ExpenseCounter from './components/ExpenseCounter';
 import ExpenseSearch from './components/ExpenseSearch';
@@ -8,39 +8,27 @@ import ExpenseForm from './components/ExpenseForm';
 import expenseList from './mock'
 
 
-class App extends React.Component {
+function App (props) {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      expenses: expenseList,
-      searchValue: ''
-    }
-    this.setSearchVal = this.setSearchVal.bind(this);
-  }
+  const [expenses, setExpenses] = useState(expenseList);
+  const [searchVal, setSearchVal] = useState('');
 
-  componentDidMount() {
-    localStorage.getItem('EXPENSES')
-  }
+  useEffect(( ) => {
+    // traer datos de la api
+  }, [])
 
-  setSearchVal(v) {
-    this.setState({ searchValue: v });
-  }
-
-  render() {
-
-    const searchExpenses = this.state.expenses.filter(e =>
-      e.eType.toLocaleLowerCase().includes(this.state.searchValue.toLocaleLowerCase())
-    );
-    const expenseCount = searchExpenses.length;
+  const searchExpenses = expenses.filter(e =>
+    e.eType.toLocaleLowerCase().includes(this.state.searchValue.toLocaleLowerCase())
+  );
+  const expenseCount = searchExpenses.length;
 
 
-    return (
+  return (
       <div className='flex-box-container'>
         <header className="App-header">
           <ExpenseSearch
-            searchValue={this.state.searchValue}
-            onSearchValueChange={this.setSearchVal}
+            searchValue={searchVal}
+            onSearchValueChange={setSearchVal}
           ></ExpenseSearch>
 
           <ExpenseCounter count={expenseCount} />
@@ -55,7 +43,6 @@ class App extends React.Component {
         <ExpenseForm ></ExpenseForm>
       </div>
     );
-  }
 }
 
 export default App;
