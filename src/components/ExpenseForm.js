@@ -3,17 +3,17 @@ import '../App.css'
 import './ExpenseForm.css'
 
 function ExpenseForm(props) {
-
-    const [form, setForm] = useState({numDoc: '', eType: '', totalVal: '', providerRuc: ''})
+    const [form, setForm] = useState({numDoc: '', eType: "Hospedaje", totalVal: '', providerRuc: ''})
 
     useEffect(() => {
 
     }, [])
 
     const handleSubmit = (e) => {
-        console.log(e.target.name.value)
-        console.log(typeof e.target.name.value)
+        console.log(form)
+        // console.log(typeof e.target.name.value)
         e.preventDefault()
+        props.onSubmit(form)
     }
 
     const handleInputChange = (e) => {

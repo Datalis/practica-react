@@ -22,6 +22,10 @@ function App (props) {
   );
   const expenseCount = searchExpenses.length;
 
+  const handleFormSubmit = formData => {
+    setExpenses([...expenses, {...formData}])
+  }
+
 
   return (
       <div className='flex-box-container'>
@@ -40,7 +44,7 @@ function App (props) {
           )}
         </ul>
 
-        <ExpenseForm ></ExpenseForm>
+        <ExpenseForm onSubmit={handleFormSubmit} ></ExpenseForm>
       </div>
     );
 }
